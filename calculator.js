@@ -27,7 +27,7 @@ function operate(input) {
 	for (let i = 0; i < operators.length; i++) {
 		while (output.indexOf(operators[i].char) != -1) {
 			let j = output.indexOf(operators[i].char);
-			output.splice(j - 1, 3, operators[i].op(output[j-1], output[j+1]));
+			output.splice(j - 1, 3, operators[i].op(parseFloat(output[j-1]), parseFloat(output[j+1])));
 		}
 	}
 	return output[0];
