@@ -1,0 +1,27 @@
+* {
+	box-sizing: border-box;
+	margin: 0px;
+	padding: 0px;
+}
+
+#main-container {
+	min-height: 100vh;
+	min-width: 100vw;
+	background: linear-gradient(15deg, cyan, pink);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#calc-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-template-rows: 1fr 2fr 1fr 1fr 1fr 1fr 1fr;
+	grid-gap: 1px;
+	min-width: 400px;
+	min-height: 500px;
+	background-color: rgba(25, 25, 25, 0.8);
+	border-style: solid;
+	border-width: 2px;
+	border-color: rgba(150, 150, 150, 0.8);
+}
