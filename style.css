@@ -8,14 +8,11 @@
 	min-height: 100vh;
 	min-width: 100vw;
 	background: linear-gradient(15deg, cyan, pink);
-	display: flex;
-	justify-content: center;
-	align-items: center;
 	overflow: hidden;
 }
 
 #calc-container {
-	position: 100px, 100px;
+	position: absolute;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr;
 	grid-template-rows: 1fr 2fr 1fr 1fr 1fr 1fr 1fr;
@@ -31,7 +28,17 @@
 	border-color: rgba(150, 150, 150, 0.8);
 	box-shadow: 2px 5px 20px rgba(0, 0, 0, 0.5);
 	font-family: sans-serif;
-	transform: translate(0px, 0px);
+	animation: leftright 10s linear infinite alternate, updown 4.33s linear infinite alternate;
+}
+
+@keyframes leftright {
+	from {margin-left: (0px)}
+	to   {margin-left: calc(100vw - 400px)}
+}
+
+@keyframes updown {
+	from {transform: translateY(0px)}
+	to   {transform: translateY(calc(100vh - 500px))}
 }
 
 #calc-op-display {
