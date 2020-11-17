@@ -80,6 +80,8 @@
 
 .calc-eq {
 	background-color: rgba(255, 80, 80, 0.8);
+	grid-row: 6/8;
+	grid-column: 4/5;
 }
 
 .calc-eq:hover {
