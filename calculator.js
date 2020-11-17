@@ -1,22 +1,99 @@
+// Set up event handlers:
+let allButtons = Array.from(document.querySelectorAll(".button"));
+for (let i = 0; i < allButtons.length; i++) {
+	allButtons[i].addEventListener('click', handleButton);
+}
+
+let finalEquation = [];
+let numDisplay = "0";
+
+function handleButton(event) {
+	let key = event.target.getAttribute('data-key');
+	if (Array.from(event.target.classList).includes("calc-num")) {
+		handleNumberButton(key);
+	}
+	else if (Array.from(event.target.classList).includes("calc-fn")) {
+		handleFunctionButton(key);
+	}
+	else {
+		handleEqualsButton();
+	}
+	updateDisplays();
+}
+
+function handleNumberButton(key) {
+	if (key == "." && !numDisplay.includes(".") && numDisplay.length < 10) {
+		numDisplay += key;
+	}
+	else if (key != "." && numDisplay.length < 10) {
+		if (numDisplay === "0") {
+			numDisplay = key;
+		}
+		else {
+			numDisplay += key;
+		}
+	}
+}
+
+function handleFunctionButton(key) {
+	if (key === "clr") {
+		finalEquation = [];
+		numDisplay = "0";
+	}
+	else if (key === "-/+") {
+		if (numDisplay[0] != "-") {
+			numDisplay = "-" + numDisplay;
+		}
+		else {
+			numDisplay = numDisplay.substring(1);
+		}
+	}
+	else {
+		finalEquation.push(numDisplay);
+		finalEquation.push(key);
+		numDisplay = "0";
+	}
+}
+
+function handleEqualsButton() {
+	if (numDisplay[-1] == ".") {
+		numDisplay += "0";
+	}
+	finalEquation.push(numDisplay);
+	let result = operate(finalEquation);
+	if (result.length > 10) {
+		if (result > 9999999999) {
+			numDisplay = "Math is hard";
+		}
+		else {
+
+		}
+	} 
+	else {
+		numDisplay = result;
+		finalEquation = [];
+	}
+}
+
+function updateDisplays() {
+	document.getElementById("op-display").textContent = finalEquation.join(" ");
+	document.getElementById("num-display").textContent = numDisplay;
+}
+
 function add(a, b) { return a + b; }
 
 function multiply(a, b) { return a * b; }
 
 function subtract(a, b) { return a - b; }
 
-function divide(a, b) { return a / b; }
+function divide(a, b) { return (b != 0) ? a / b : 0; }
 
 function pow(a, b) { return a ** b; }
 
-// Calculators always use algebraic precedence: (pow, sqrt) -> (mult, div) -> (add, sub)
-
-// Instead of having one function that is called that waits for the input to be over
-// we have to keep track of everything that gets entered individually and then operate
-// on them only when the equals button has been pressed.
-
-let testArray = [10, "+", 30, "*", 50, "-", 5, "**" , 2, "/", 15]; // 158.3r - 1.6r
-
 function operate(input) {
+	if (input.length == 1) {
+		return input[0];
+	}
 	let output = input;
 	
 	let operators = [{char: "**", op: pow},
@@ -32,5 +109,3 @@ function operate(input) {
 	}
 	return output[0];
 }
-
-console.log(operate(testArray));

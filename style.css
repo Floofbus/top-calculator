@@ -78,6 +78,10 @@
 	transition: background-color 0.2s ease;
 }
 
+.button p {
+	pointer-events: none;
+}
+
 .calc-eq {
 	background-color: rgba(255, 80, 80, 0.8);
 	grid-row: 6/8;
@@ -86,6 +90,12 @@
 
 .calc-eq:hover {
 	background-color: rgba(255, 110, 110, 0.8);;
+}
+
+.calc-eq:active {
+	background-color: rgba(255, 80, 80, 0.8);
+	border-style: solid;
+	border-width: 3px;
 }
 
 
@@ -97,10 +107,22 @@
 	background-color: rgba(150, 150, 150, 0.8);
 }
 
+.calc-num:active {
+	background-color: rgba(120, 120, 120, 0.8);
+	border-style: solid;
+	border-width: 3px;
+
+}
 .calc-fn {
 	background-color: rgba(255, 127, 0, 0.8);
 }
 
 .calc-fn:hover {
 	background-color: rgba(255, 157, 30, 0.8);
+}
+
+.calc-fn:active {
+	background-color: rgba(255, 127, 0, 0.8);
+	border-style: solid;
+	border-width: 3px;
 }
