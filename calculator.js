@@ -9,7 +9,14 @@ let numDisplay = "0";
 
 function handleButton(event) {
 	let key = event.target.getAttribute('data-key');
-	if (Array.from(event.target.classList).includes("calc-num")) {
+	if (numDisplay == "Math is hard") {
+		if (Array.from(event.target.classList).includes("calc-fn")) {
+			alert("STOP! YOU'VE VIOLATED THE LAW! PAY THE COURT A FINE OR SERVE YOUR SENTENCE! YOUR STOLEN GOODS ARE NOW FORFEIT, VANDAL!");
+			numDisplay = "0";
+		}
+		numDisplay = "0";
+	}
+	else if (Array.from(event.target.classList).includes("calc-num")) {
 		handleNumberButton(key);
 	}
 	else if (Array.from(event.target.classList).includes("calc-fn")) {
@@ -61,18 +68,27 @@ function handleEqualsButton() {
 	}
 	finalEquation.push(numDisplay);
 	let result = operate(finalEquation);
-	if (result.length > 10) {
+	if (result.toString().length > 10) {
 		if (result > 9999999999) {
 			numDisplay = "Math is hard";
 		}
 		else {
-
+			if (result < 10) numDisplay = result.toFixed(9);
+			else if (result < 100) numDisplay = result.toFixed(8);
+			else if (result < 1000) numDisplay = result.toFixed(7);
+			else if (result < 10000) numDisplay = result.toFixed(6);
+			else if (result < 100000) numDisplay = result.toFixed(5);
+			else if (result < 1000000) numDisplay = result.toFixed(4);
+			else if (result < 10000000) numDisplay = result.toFixed(3);
+			else if (result < 100000000) numDisplay = result.toFixed(2);
+			else if (result < 1000000000) numDisplay = result.toFixed(1);
+			else { numDisplay = resut.toFixed(0); }
 		}
 	} 
 	else {
 		numDisplay = result;
-		finalEquation = [];
 	}
+	finalEquation = [];
 }
 
 function updateDisplays() {
