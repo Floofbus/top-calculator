@@ -9,7 +9,7 @@ let numDisplay = "0";
 
 function handleButton(event) {
 	let key = event.target.getAttribute('data-key');
-	if (numDisplay == "Math is hard") {
+	if (numDisplay == "Math is hard" && key != "clr") {
 		if (Array.from(event.target.classList).includes("calc-fn")) {
 			alert("STOP! YOU'VE VIOLATED THE LAW! PAY THE COURT A FINE OR SERVE YOUR SENTENCE! YOUR STOLEN GOODS ARE NOW FORFEIT, VANDAL!");
 			numDisplay = "0";
